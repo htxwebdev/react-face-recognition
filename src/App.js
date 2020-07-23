@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import Clarifai from 'clarifai';
+import React, { useState } from 'react';
 import './App.scss';
 
 import Particles from 'react-particles-js'
