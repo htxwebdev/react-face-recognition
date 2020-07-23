@@ -46,12 +46,6 @@ function App() {
     isSignedIn: false
   })
 
-  useEffect(() => {
-    fetch('http://localhost:3000')
-      .then(response => response.json())
-      .then(console.log)
-  }, [])
-
   const updateUser = (userInfo) => {
     setUser(userInfo)
   }
@@ -86,7 +80,7 @@ function App() {
 
   const onButtonSubmit = () => {
     setImage(input);
-    fetch('http://localhost:3000/imageurl', {
+    fetch('https://warm-sands-37521.herokuapp.com/imageurl', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -95,7 +89,7 @@ function App() {
     })
       .then(response => response.json())
       .then(response => {
-        fetch('http://localhost:3000/image', {
+        fetch('https://warm-sands-37521.herokuapp.com/image', {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
