@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
+import ErrorMessage from './ErrorMessage'
 
 const Signin = ({ updateRoute, updateUser }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [submitError, setSubmitError] = useState(false);
+    const [submitValid, setSubmitValid] = useState({
+        isValid: Boolean,
+        errorMsg: 'User/Password combination not found'
+    });
 
     const emailText = (event) => {
         setEmail(event.target.value)
@@ -24,9 +28,16 @@ const Signin = ({ updateRoute, updateUser }) => {
         })
             .then(response => {
                 if (response.status === 200) {
+                    setSubmitValid({
+                        ...submitValid,
+                        isValid: true
+                    });
                     return response.json()
                 } else {
-                    setSubmitError(true);
+                    setSubmitValid({
+                        ...submitValid,
+                        isValid: false
+                    });
                     throw new Error(response.status)
                 }
             })
@@ -49,9 +60,11 @@ const Signin = ({ updateRoute, updateUser }) => {
                 <label htmlFor="password">
                     <input id="password" type="text" className="red" onChange={passwordText} placeholder="Password" />
                 </label>
+                <ErrorMessage valid={submitValid.isValid} message={submitValid.errorMsg} />
                 <button onClick={() => submitSignIn()}>Sign in</button>
+
             </div>
-            {submitError ? <p>User/Password combination not found</p> : ''}
+
         </div>
     )
 }

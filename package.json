@@ -13,6 +13,7 @@
     "react-particles-js": "^3.2.1",
     "react-scripts": "3.4.1",
     "react-tilt": "^0.1.4",
+    "react-transition-group": "^4.4.1",
     "serve": "^11.3.2"
   },
   "scripts": {
