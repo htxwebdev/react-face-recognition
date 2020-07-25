@@ -95,8 +95,21 @@ const Register = ({ updateRoute, updateUser }) => {
     }
 
     const isFormValid = () => {
+        console.log('validation')
         if (name.isValid && email.isValid && password.isValid) {
             submitRegister();
+        }
+
+        if (name.input === '') {
+            setName({ ...name, isValid: false })
+        }
+
+        if (email.input === '') {
+            setEmail({ ...email, isValid: false })
+        }
+
+        if (password.input === '') {
+            setPassword({ ...password, isValid: false })
         }
     }
     return (
